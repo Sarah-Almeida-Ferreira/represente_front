@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  body {
+    @apply m-0 flex items-center justify-center w-full min-h-screen bg-bg-color text-text-color font-sans leading-6;
+  }
+
+  .btn {
+    @apply rounded flex justify-center items-center h-10;
+  }
+}
