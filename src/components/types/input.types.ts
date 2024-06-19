@@ -1,0 +1,15 @@
+type InputType =
+  | "text"
+  | "number"
+  | "email"
+  | "password"
+  | "tel"
+  | "search"
+  | "file"
+  | "date"
+  | "radio"
+  | "checkbox"
+  | "file"
+  | "color"
+  | "url"
+  | "range";
