@@ -1,9 +1,9 @@
-type UserPassword = {
+export type UserPassword = {
   email: string;
   password: string;
 };
 
-type UserConfirmation = {
+export type UserConfirmation = {
   userEmail: string;
   confirmationCode: string;
 };

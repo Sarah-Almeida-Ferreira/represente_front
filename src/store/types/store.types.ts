@@ -1,4 +1,4 @@
-type State = {
+export type State = {
   token: string;
   error: string;
   success: string;
