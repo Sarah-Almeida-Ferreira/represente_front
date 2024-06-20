@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ToastComponent from "@/components/toasts/ToastComponent.vue";
+import ToastComponent from "@/toasts/components/ToastComponent.vue";
 import { computed } from "vue";
 import store from "@/store";
 

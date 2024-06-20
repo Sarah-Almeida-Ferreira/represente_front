@@ -44,12 +44,14 @@ const buttonTitle = computed(() =>
       'w-full': isFull,
     }"
     :disabled="disabled || loading"
+    data-test="button-component"
   >
     <slot></slot>
     <img
       class="absolute left-4 h-10"
       :src="spinnerGif"
       alt="Gif carregando"
+      data-test="button-component-spinner-gif"
       v-if="loading && !!spinnerGif"
     />
     {{ buttonTitle }}

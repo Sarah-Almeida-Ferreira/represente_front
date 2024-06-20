@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ButtonComponent from "@/components/buttons/ButtonComponent.vue";
-import ToastComponent from "@/components/toasts/ToastComponent.vue";
+import ButtonComponent from "@/buttons/components/ButtonComponent.vue";
+import ToastComponent from "@/toasts/components/ToastComponent.vue";
+import InputComponent from "@/form/components/InputComponent.vue";
 import { validateEmail } from "@/validations/email.validation.ts";
-import InputComponent from "@/components/form/InputComponent.vue";
 import { stages } from "../constants/login.constants.ts";
 import { computed, ref, watch, onMounted } from "vue";
 import store from "@/store";
@@ -102,7 +102,7 @@ onMounted(focusInput);
 
 <template>
   <div class="border border-secondary rounded p-5">
-    <img src="@/assets/Logo.png" class="h-20 mb-10" />
+    <img src="@/assets/Logo.png" class="h-20 mb-5 ml-[-6px]" />
     <ToastComponent :message="errorMessage" type="danger" />
     <form class="py-4" @submit="nextStage" id="login">
       <InputComponent
