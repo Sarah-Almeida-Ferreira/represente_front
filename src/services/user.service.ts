@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '@/constants/api.constants.ts';
+import { BASE_URL } from '@constants/api.constants.ts';
 
 const getUserSituation = async (email: string) => {
   return axios({

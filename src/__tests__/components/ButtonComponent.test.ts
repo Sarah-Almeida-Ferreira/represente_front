@@ -1,4 +1,4 @@
-import ButtonComponent from '@/buttons/components/ButtonComponent.vue';
+import ButtonComponent from '@components/ButtonComponent.vue';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 

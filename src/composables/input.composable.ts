@@ -1,5 +1,5 @@
 import { ref, computed, watch } from 'vue';
-import { emailMask } from '@/validations/email.validation';
+import { emailMask } from '@validations/email.validation';
 
 export function useInput(model, props, emit) {
   const inputType = ref(props.type);

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
+import { computed } from 'vue';
+import { ButtonType } from '@types/button.types';
+import { ColorType } from '@types/color.types';
+ 
 const props = defineProps<{
   type: ButtonType;
   title: string;
@@ -11,27 +13,27 @@ const props = defineProps<{
 }>();
 
 const classes = {
-  primary: "bg-primary",
-  secondary: "border border-primary text-primary bg-transparent",
+  primary: 'bg-primary',
+  secondary: 'border border-primary text-primary bg-transparent',
   danger: 'bg-danger',
   warning: 'bg-warning',
   info: 'bg-info',
-  success: 'bg-success',
+  success: 'bg-success'
 };
 
 const spinnerGif = computed(() => {
-  const BASE_SRC = "src/assets/";
+  const BASE_SRC = 'src/assets/';
   switch (props.colorType) {
-    case "primary":
-      return BASE_SRC + "secondarySpinner.gif";
-    case "secondary":
-      return BASE_SRC + "spinner.gif";
+    case 'primary':
+      return BASE_SRC + 'secondarySpinner.gif';
+    case 'secondary':
+      return BASE_SRC + 'spinner.gif';
     default:
-      return "";
+      return '';
   }
 });
 const buttonTitle = computed(() =>
-  props.loading ? "Carregando" : props.title
+  props.loading ? 'Carregando' : props.title
 );
 </script>
 
@@ -46,14 +48,14 @@ const buttonTitle = computed(() =>
     :disabled="disabled || loading"
     data-test="button-component"
   >
-    <slot></slot>
+    <slot />
     <img
+      v-if="loading && !!spinnerGif"
       class="absolute left-4 h-10"
       :src="spinnerGif"
       alt="Gif carregando"
       data-test="button-component-spinner-gif"
-      v-if="loading && !!spinnerGif"
-    />
+    >
     {{ buttonTitle }}
   </button>
 </template>

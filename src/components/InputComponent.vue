@@ -2,7 +2,7 @@
 import { withDefaults } from 'vue';
 import { useInput } from '../composables/input.composable.ts';
 
-const model = defineModel();
+const model = defineModel<string | number>();
 const emit = defineEmits(['input']);
 const props = withDefaults(
   defineProps<{
@@ -10,7 +10,7 @@ const props = withDefaults(
     placeholder?: string;
     error?: string;
     required?: boolean;
-    maxLength?: number;
+    maxLength?: number | undefined;
     autocomplete?: string;
     inputId?: string;
   }>(),
@@ -19,44 +19,47 @@ const props = withDefaults(
     placeholder: '',
     error: '',
     autocomplete: 'false',
+    maxLength: undefined,
+    inputId: 'inputComponentId'
   }
 );
 
 const {
   inputType,
   inputElement,
-  isEmail,
   isPassword,
-  isInvalid,
   passwordIcon,
   toggleVisibility,
-  handleInput,
+  handleInput
 } = useInput(model, props, emit);
 </script>
 
 <template>
   <div class="relative">
     <input
-      v-model="model"
+      :id="inputId"
       ref="inputElement"
+      v-model="model"
       data-test="input-field"
       class="rounded border-secondary border bg-dark h-10 w-full px-3 focus:outline-none focus:border-primary"
-      :id="inputId"
       :type="inputType"
       :placeholder="placeholder"
       :required="required"
       :autocomplete="autocomplete"
       :maxLength="maxLength"
       @input="() => handleInput()"
-    />
+    >
     <button
       v-if="isPassword"
-      @click="toggleVisibility"
       data-test="toggle-visibility-button"
       class="absolute right-4 top-2 cursor-pointer"
       type="button"
+      @click="toggleVisibility"
     >
-      <i :class="`fa-solid ${passwordIcon}`" data-test="visibility-icon"></i>
+      <i
+        :class="`fa-solid ${passwordIcon}`"
+        data-test="visibility-icon"
+      />
     </button>
   </div>
 </template>

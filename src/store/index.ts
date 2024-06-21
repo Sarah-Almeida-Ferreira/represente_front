@@ -4,9 +4,9 @@ import {
   signUp,
   authenticateWithPassword,
   confirmUserRegistration
-} from '@/User/services/user.service.ts';
-import router from '@/routes';
-import { stages } from '@/User/constants/login.constants.ts';
+} from '@services/user.service.ts';
+import router from '@routes';
+import { stages } from '@constants/login.constants.ts';
 
 const store = createStore({
   state() {

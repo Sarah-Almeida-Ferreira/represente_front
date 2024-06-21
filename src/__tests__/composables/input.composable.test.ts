@@ -1,7 +1,7 @@
 import { ref, nextTick } from 'vue';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { useInput } from '@/form/composables/input.composable';
-import * as emailValidation from '@/validations/email.validation';
+import { useInput } from '@composables/input.composable';
+import * as emailValidation from '@validations/email.validation';
 
 describe('useInput composable', () => {
   let model;

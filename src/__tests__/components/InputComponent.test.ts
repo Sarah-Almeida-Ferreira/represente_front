@@ -1,4 +1,4 @@
-import InputComponent from '@/form/components/InputComponent.vue';
+import InputComponent from '@components/InputComponent.vue';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 

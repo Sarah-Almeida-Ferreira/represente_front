@@ -1,5 +1,5 @@
 import { describe, it, expect, assert } from 'vitest';
-import { validateEmail, emailMask } from '@/validations/email.validation.ts';
+import { validateEmail, emailMask } from '@validations/email.validation.ts';
 
 describe('validateEmail', () => {
   it('throws error - domain not specified', () => {

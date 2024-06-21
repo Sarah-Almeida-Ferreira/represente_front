@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import ButtonComponent from "@/buttons/components/ButtonComponent.vue";
-import ToastComponent from "@/toasts/components/ToastComponent.vue";
-import InputComponent from "@/form/components/InputComponent.vue";
-import { validateEmail } from "@/validations/email.validation.ts";
-import { stages } from "../constants/login.constants.ts";
-import { computed, ref, watch, onMounted } from "vue";
-import store from "@/store";
+import ButtonComponent from '@components/ButtonComponent.vue';
+import ToastComponent from '@components/ToastComponent.vue';
+import InputComponent from '@components/InputComponent.vue';
+import { validateEmail } from '@validations/email.validation.ts';
+import { stages } from '../constants/login.constants.ts';
+import { computed, ref, watch, onMounted } from 'vue';
+import store from '@store';
 
 const email = ref({
-  content: "",
-  error: "",
+  content: '',
+  error: ''
 });
 const password = ref({
-  content: "",
-  error: "",
+  content: '',
+  error: ''
 });
 const confirmationCode = ref({
-  content: "",
-  error: "",
+  content: '',
+  error: ''
 });
 const loading = ref(false);
 
@@ -37,7 +37,7 @@ const toggleLoading = () => {
 };
 
 const previousStage = () => {
-  store.commit("setStage", -1);
+  store.commit('setStage', -1);
 };
 
 const nextStage = async (e: Event) => {
@@ -52,7 +52,7 @@ const nextStage = async (e: Event) => {
 const validateUserEmail = () => {
   try {
     email.value.error = validateEmail(email.value?.content);
-  } catch (error: any) {
+  } catch (error) {
     email.value.error = error.message;
   }
 };
@@ -61,18 +61,18 @@ const checkConfirmationCode = async () => {
   if (confirmationCode.value?.content) {
     const user = {
       userEmail: email.value?.content,
-      confirmationCode: confirmationCode.value?.content,
+      confirmationCode: confirmationCode.value?.content
     };
-    await store.dispatch("confirmUserRegistration", user);
+    await store.dispatch('confirmUserRegistration', user);
   }
 };
 
 const checkPassword = async () => {
   if (password.value?.content) {
-    const action = isLoginStage.value ? "login" : "signUp";
+    const action = isLoginStage.value ? 'login' : 'signUp';
     const user = {
       email: email.value?.content,
-      password: password.value?.content,
+      password: password.value?.content
     };
     await store.dispatch(action, user);
   }
@@ -80,16 +80,16 @@ const checkPassword = async () => {
 
 const checkUser = async () => {
   validateUserEmail();
-  await store.dispatch("getUserSituation", email.value?.content);
+  await store.dispatch('getUserSituation', email.value?.content);
 };
 
 const focusInput = () => {
   setTimeout(() => {
     const id = isConfirmationStage.value
-      ? "codeInput"
+      ? 'codeInput'
       : isPasswordStage.value
-      ? "passwordInput"
-      : "emailInput";
+      ? 'passwordInput'
+      : 'emailInput';
     const input = document.getElementById(id);
     input?.focus();
   }, 50);
@@ -102,58 +102,68 @@ onMounted(focusInput);
 
 <template>
   <div class="border border-secondary rounded p-5">
-    <img src="@/assets/Logo.png" class="h-20 mb-5 ml-[-6px]" />
-    <ToastComponent :message="errorMessage" type="danger" />
-    <form class="py-4" @submit="nextStage" id="login">
+    <img
+      src="@assets/Logo.png"
+      class="h-20 mb-5 ml-[-6px]"
+    >
+    <ToastComponent
+      :message="errorMessage"
+      type="danger"
+    />
+    <form
+      id="login"
+      class="py-4"
+      @submit="nextStage"
+    >
       <InputComponent
-        required
         v-show="isEmailStage"
         v-model="email.content"
+        required
         type="email"
         autocomplete="true"
         placeholder="E-mail"
         class="mb-5"
-        inputId="emailInput"
-        @input="validateUserEmail"
+        input-id="emailInput"
         :error="email.error"
+        @input="validateUserEmail"
       />
       <InputComponent
-        required
         v-if="isPasswordStage"
         v-model="password.content"
+        required
         type="password"
         placeholder="Senha"
         class="mb-5"
-        inputId="passwordInput"
+        input-id="passwordInput"
         :error="password.error"
       />
       <InputComponent
-        required
         v-if="isConfirmationStage"
         v-model="confirmationCode.content"
+        required
         type="text"
         placeholder="Código de confirmação"
         class="mb-5"
-        inputId="codeInput"
-        :maxLength="6"
+        input-id="codeInput"
+        :max-length="6"
         :error="confirmationCode.error"
       />
     </form>
 
     <ButtonComponent
-      isFull
+      is-full
       title="Continuar"
-      colorType="primary"
+      color-type="primary"
       form="login"
       type="submit"
       :loading="loading"
     />
 
     <ButtonComponent
-      isFull
       v-if="!isEmailStage"
+      is-full
       title="Voltar"
-      colorType="secondary"
+      color-type="secondary"
       type="button"
       class="my-5"
       @click="previousStage"
