@@ -10,7 +10,13 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     coverage: {
-      provider: 'istanbul'
+      provider: 'istanbul',
+      exclude: [
+        'src/main.ts',
+        'src/constants',
+        'src/routes',
+        '*.*'
+      ]
     }
   },
   resolve: {
