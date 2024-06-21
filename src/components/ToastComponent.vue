@@ -9,8 +9,8 @@ const props = withDefaults(
     message: string;
   }>(),
   {
-    timeout: 10000
-  }
+    timeout: 10000,
+  },
 );
 
 const show = ref(false);
@@ -39,13 +39,11 @@ watch(message, initialize);
     <div
       v-if="show && !!message"
       :class="`toast-${type} p-2 rounded opacity-70 flex justify-between`"
+      data-test="toast-component-container"
     >
       {{ message }}
-      <button
-        class="ml-2 hover:text-[white]"
-        @click="close"
-      >
-        <i class="fa-solid fa-circle-xmark" />
+      <button class="ml-2 hover:text-[white]" @click="close" data-test="toast-component-close-button">
+        <i class="fa-solid fa-circle-xmark"></i>
       </button>
     </div>
   </Transition>
