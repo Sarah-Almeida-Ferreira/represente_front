@@ -15,7 +15,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  const isAuthenticated = !!store.getters.getToken;
+  const isAuthenticated = !!store.state.token;
   if (!isAuthenticated && to.name !== 'Login') next('/login');
   else next();
 });
